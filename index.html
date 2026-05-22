@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payvandchi va gazpayvandchi bilim sinovi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="rail-bg"></div>
+
+  <main id="app">
+    <section id="loginScreen" class="screen active">
+      <div class="auth-card glass">
+        <div class="brand-badge">VChD / ICHTB</div>
+        <h1>Imtihon platformasi</h1>
+        <p class="muted">Payvandchi va gazpayvandchilar bilimini nazariy sinovdan o‘tkazish tizimi</p>
+        <label class="field-label" for="adminPassword">Admin parol</label>
+        <div class="password-row">
+          <input id="adminPassword" type="password" placeholder="Parolni kiriting" autocomplete="off" />
+          <button id="togglePassword" class="icon-btn" type="button">👁</button>
+        </div>
+        <button id="loginBtn" class="primary-btn full">Kirish</button>
+        <p id="loginError" class="error-text"></p>
+      </div>
+    </section>
+
+    <section id="homeScreen" class="screen">
+      <header class="hero glass">
+        <div>
+          <div class="brand-badge">Temir yo‘l texnik nazorat platformasi</div>
+          <h1>Payvandchi va gazpayvandchilar bilimlarini sinovdan o‘tkazish platformasi</h1>
+          <p>Admin: ICHTB boshlig‘i F.B. G‘aniyev</p>
+          <p class="muted">Nazariy test, vaqt nazorati, xodim ma’lumotlari, yuz rasmi va natijalar arxivi.</p>
+        </div>
+        <div class="hero-illustration">
+          <div class="train-line"></div>
+          <div class="spark spark1"></div>
+          <div class="spark spark2"></div>
+          <div class="spark spark3"></div>
+          <div class="helmet">⚙️</div>
+        </div>
+      </header>
+
+      <section class="role-grid">
+        <button class="role-card glass" data-role="welder">
+          <span class="role-icon">⚡</span>
+          <h2>Payvandchilar bilimini sinash</h2>
+          <p>Elektr payvandchi yo‘nalishi bo‘yicha 20 ta aralash test.</p>
+        </button>
+        <button class="role-card glass" data-role="gas">
+          <span class="role-icon">🔥</span>
+          <h2>Gazpayvandchilar bilimini sinash</h2>
+          <p>Gazpayvandchi yo‘nalishi bo‘yicha 20 ta aralash test.</p>
+        </button>
+      </section>
+
+      <section class="results-panel glass">
+        <div class="panel-head">
+          <div>
+            <h2>Natijalar arxivi</h2>
+            <p class="muted">Natijalar ushbu brauzer xotirasida saqlanadi.</p>
+          </div>
+          <div class="result-actions">
+            <button id="exportBtn" class="secondary-btn">CSV eksport</button>
+            <button id="clearAllBtn" class="danger-btn">Hammasini o‘chirish</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Sana/vaqt</th>
+                <th>Rasm</th>
+                <th>F.I.Sh.</th>
+                <th>Korxona</th>
+                <th>Lavozim</th>
+                <th>Uchastka</th>
+                <th>Rol</th>
+                <th>Natija</th>
+                <th>Amal</th>
+              </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section id="registerScreen" class="screen">
+      <div class="form-card glass">
+        <div class="screen-top">
+          <button class="back-btn" id="backHome1">← Bosh sahifa</button>
+          <div class="brand-badge" id="selectedRoleBadge">Rol</div>
+        </div>
+        <h2>Ro‘yxatdan o‘tish</h2>
+        <div class="form-grid">
+          <label>Ism <input id="firstName" required placeholder="Ism" /></label>
+          <label>Familiya <input id="lastName" required placeholder="Familiya" /></label>
+          <label>Korxona <input id="company" placeholder="Masalan: Andijon vagon deposi" /></label>
+          <label>Lavozim <input id="position" readonly /></label>
+          <label>Uchastka nomi <input id="sectionName" placeholder="Masalan: payvandlash uchastkasi" /></label>
+        </div>
+
+        <div class="camera-box">
+          <div class="camera-preview">
+            <video id="cameraVideo" autoplay playsinline></video>
+            <canvas id="photoCanvas"></canvas>
+            <img id="photoPreview" alt="Xodim rasmi" />
+          </div>
+          <div class="camera-actions">
+            <button id="requestCameraBtn" class="secondary-btn">Kameraga ruxsat so‘rash</button>
+            <button id="captureBtn" class="primary-btn" disabled>Yuzni rasmga olish</button>
+            <button id="retakeBtn" class="secondary-btn hidden">Qayta olish</button>
+          </div>
+          <p class="muted">Yuz kameraga to‘g‘rilanadi va rasm olinadi. Kamera ishlamasa ham testga o‘tish mumkin, lekin natijada “rasm yo‘q” ko‘rinadi.</p>
+        </div>
+
+        <button id="startExamBtn" class="primary-btn full">Ro‘yxatdan o‘tish va testni boshlash</button>
+        <p id="registerError" class="error-text"></p>
+      </div>
+    </section>
+
+    <section id="examScreen" class="screen">
+      <div class="exam-layout">
+        <aside class="exam-side glass">
+          <h3 id="examRoleTitle">Test</h3>
+          <p id="workerInfo" class="muted"></p>
+          <div class="timer" id="timer">15:00</div>
+          <div class="progress-bar"><span id="progressFill"></span></div>
+          <p id="progressText">1 / 20</p>
+          <button id="finishBtnSide" class="danger-btn full">Testni tugatish</button>
+        </aside>
+
+        <section class="question-card glass">
+          <div class="question-head">
+            <span id="questionCategory" class="brand-badge">Bo‘lim</span>
+            <span id="questionNumber" class="q-number">1-savol</span>
+          </div>
+          <h2 id="questionText"></h2>
+          <div id="optionsBox" class="options-box"></div>
+          <div class="nav-row">
+            <button id="prevBtn" class="secondary-btn">Oldingi</button>
+            <button id="nextBtn" class="primary-btn">Keyingisi</button>
+            <button id="finishBtn" class="success-btn hidden">Tugatish</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="resultScreen" class="screen">
+      <div class="result-card glass">
+        <h2>Test yakunlandi</h2>
+        <div class="result-main">
+          <img id="finalPhoto" alt="Xodim rasmi" />
+          <div>
+            <h3 id="finalName"></h3>
+            <p id="finalMeta"></p>
+            <div id="finalScore" class="score-big"></div>
+            <p class="muted">To‘g‘ri javoblar ko‘rsatilmaydi. Natija bosh sahifadagi arxivga saqlandi.</p>
+          </div>
+        </div>
+        <button id="goHomeBtn" class="primary-btn full">Bosh sahifaga qaytish</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
