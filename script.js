@@ -14,16 +14,16 @@ let exam = { questions: [], answers: [], index: 0, left: EXAM_SECONDS, timerId: 
 
 const UI = {
   lat: {
-    pageTitle:"Payvandchi va gazpayvandchi bilim sinovi",
+    pageTitle:"Payvandchi va elektrgazpayvandchi bilim sinovi",
     loginTitle:"Imtihon platformasi",
-    loginSubtitle:"Payvandchi va gazpayvandchilar bilimini nazariy sinovdan o‘tkazish tizimi",
+    loginSubtitle:"Payvandchi va elektrelektrgazpayvandchilar bilimini nazariy sinovdan o‘tkazish tizimi",
     adminPassword:"Admin parol", passwordPlaceholder:"Parolni kiriting", enter:"Kirish",
     platformBadge:"Temir yo‘l texnik nazorat platformasi",
-    mainTitle:"Payvandchi va gazpayvandchilar bilimlarini sinovdan o‘tkazish platformasi",
+    mainTitle:"Payvandchi va elektrelektrgazpayvandchilar bilimlarini sinovdan o‘tkazish platformasi",
     adminLabel:"Admin",
     mainSubtitle:"Nazariy test, vaqt nazorati, xodim ma’lumotlari, yuz rasmi va natijalar arxivi.",
     welderBtn:"Payvandchilar bilimini sinash", welderInfo:"Elektr payvandchi yo‘nalishi bo‘yicha 20 ta aralash test.",
-    gasBtn:"Gazpayvandchilar bilimini sinash", gasInfo:"Gazpayvandchi yo‘nalishi bo‘yicha 20 ta aralash test.",
+    gasBtn:"Elektrelektrelektrgazpayvandchilar bilimini sinash", gasInfo:"Elektrelektrgazpayvandchi yo‘nalishi bo‘yicha 20 ta aralash test.",
     resultsArchive:"Natijalar arxivi", resultsNote:"Natijalar ushbu brauzer xotirasida saqlanadi.",
     pdfExport:"PDF hisobot", clearAll:"Hammasini o‘chirish",
     thTime:"Sana/vaqt", thPhoto:"Rasm", thFio:"F.I.Sh.", thCompany:"Korxona", thWorkshop:"Sex", thPosition:"Lavozim", thRole:"Rol", thScore:"Ball", thConclusion:"Xulosa", thAction:"Amal",
@@ -39,19 +39,19 @@ const UI = {
     didNotPass:"O‘tolmadingiz", satisfactory:"Qoniqarli", good:"Yaxshi", excellent:"A’lo",
     photoWarning:"Kamera ruxsati berilmadi yoki brauzer qo‘llab-quvvatlamaydi. Testni rasmsiz davom ettirish mumkin.",
     confirmDelete:"Ushbu natijani o‘chirasizmi?", confirmClear:"Barcha natijalarni o‘chirasizmi?", noExport:"Eksport qilish uchun natija yo‘q.",
-    welder:"Payvandchi", gas:"Gazpayvandchi", question:"savol"
+    welder:"Payvandchi", gas:"Elektrelektrgazpayvandchi", question:"savol"
   },
   cyr: {
-    pageTitle:"Пайвандчи ва газпайвандчи билим синови",
+    pageTitle:"Пайвандчи ва электргазпайвандчи билим синови",
     loginTitle:"Имтиҳон платформаси",
-    loginSubtitle:"Пайвандчи ва газпайвандчилар билимини назарий синовдан ўтказиш тизими",
+    loginSubtitle:"Пайвандчи ва электрэлектргазпайвандчилар билимини назарий синовдан ўтказиш тизими",
     adminPassword:"Админ парол", passwordPlaceholder:"Паролни киритинг", enter:"Кириш",
     platformBadge:"Темир йўл техник назорат платформаси",
-    mainTitle:"Пайвандчи ва газпайвандчилар билимларини синовдан ўтказиш платформаси",
+    mainTitle:"Пайвандчи ва электрэлектргазпайвандчилар билимларини синовдан ўтказиш платформаси",
     adminLabel:"Админ",
     mainSubtitle:"Назарий тест, вақт назорати, ходим маълумотлари, юз расми ва натижалар архиви.",
     welderBtn:"Пайвандчилар билимини синаш", welderInfo:"Электр пайвандчи йўналиши бўйича 20 та аралаш тест.",
-    gasBtn:"Газпайвандчилар билимини синаш", gasInfo:"Газпайвандчи йўналиши бўйича 20 та аралаш тест.",
+    gasBtn:"Электрэлектрэлектргазпайвандчилар билимини синаш", gasInfo:"Электрэлектргазпайвандчи йўналиши бўйича 20 та аралаш тест.",
     resultsArchive:"Натижалар архиви", resultsNote:"Натижалар ушбу браузер хотирасида сақланади.",
     pdfExport:"PDF ҳисобот", clearAll:"Ҳаммасини ўчириш",
     thTime:"Сана/вақт", thPhoto:"Расм", thFio:"Ф.И.Ш.", thCompany:"Корхона", thWorkshop:"Цех", thPosition:"Лавозим", thRole:"Рол", thScore:"Балл", thConclusion:"Хулоса", thAction:"Амал",
@@ -67,7 +67,7 @@ const UI = {
     didNotPass:"Ўтолмадингиз", satisfactory:"Қониқарли", good:"Яхши", excellent:"Аъло",
     photoWarning:"Камера рухсати берилмади ёки браузер қўллаб-қувватламайди. Тестни расмсиз давом эттириш мумкин.",
     confirmDelete:"Ушбу натижани ўчирасизми?", confirmClear:"Барча натижаларни ўчирасизми?", noExport:"Экспорт қилиш учун натижа йўқ.",
-    welder:"Пайвандчи", gas:"Газпайвандчи", question:"савол"
+    welder:"Пайвандчи", gas:"Электрэлектргазпайвандчи", question:"савол"
   }
 };
 
@@ -98,6 +98,7 @@ function applyLang(){
     $("position").value = selectedRole === "welder" ? t("welder") : t("gas");
   }
   if(document.getElementById("resultsBody")) renderResults();
+  renderSavedOptions();
   if($("examScreen").classList.contains("active") && exam.questions.length) renderQuestion();
 }
 
@@ -261,8 +262,69 @@ function exportPDF(){
   w.document.close();
 }
 
+
+function getSavedOptions(key){
+  return JSON.parse(localStorage.getItem(key) || "[]");
+}
+
+function addSavedOption(key, value){
+  const v = (value || "").trim();
+  if(!v) return;
+  const list = getSavedOptions(key);
+  if(!list.includes(v)){
+    list.unshift(v);
+    localStorage.setItem(key, JSON.stringify(list.slice(0, 30)));
+  }
+}
+
+function renderSavedOptions(){
+  const companyList = $("companyList");
+  const workshopList = $("workshopList");
+  if(companyList){
+    companyList.innerHTML = getSavedOptions("savedCompanies").map(v => `<option value="${v}"></option>`).join("");
+  }
+  if(workshopList){
+    workshopList.innerHTML = getSavedOptions("savedWorkshops").map(v => `<option value="${v}"></option>`).join("");
+  }
+}
+
+function resetRegisterForm(){
+  $("firstName").value = "";
+  $("lastName").value = "";
+  $("middleName").value = "";
+  $("company").value = "";
+  $("workshop").value = "";
+  photoData = "";
+  $("photoPreview").src = "";
+  $("photoPreview").style.display = "none";
+  $("cameraVideo").style.display = "block";
+  $("captureBtn").disabled = true;
+  $("retakeBtn").classList.add("hidden");
+  $("registerError").textContent = "";
+  stopCamera();
+  renderSavedOptions();
+}
+
+function currentAnswered(){
+  return exam.answers[exam.index] !== null && exam.answers[exam.index] !== undefined;
+}
+
+function allAnswered(){
+  return exam.answers.length > 0 && exam.answers.every(a => a !== null && a !== undefined);
+}
+
+function answerRequiredMessage(){
+  return currentLang === "cyr" ? "Аввал жавобни белгиланг." : "Avval javobni belgilang.";
+}
+
+function allRequiredMessage(){
+  return currentLang === "cyr" ? "Барча 20 та саволга жавоб белгиланг." : "Barcha 20 ta savolga javob belgilang.";
+}
+
+
 function setRole(role){
   selectedRole = role;
+  resetRegisterForm();
   $("selectedRoleBadge").textContent = role === "welder" ? t("welder") : t("gas");
   $("position").value = role === "welder" ? t("welder") : t("gas");
   $("registerError").textContent = "";
@@ -308,6 +370,9 @@ function startExam(){
     $("registerError").textContent = t("enterName");
     return;
   }
+  addSavedOption("savedCompanies", $("company").value);
+  addSavedOption("savedWorkshops", $("workshop").value);
+
   worker = {
     firstName,
     lastName,
@@ -316,7 +381,7 @@ function startExam(){
     workshop: $("workshop").value.trim(),
     position: $("position").value.trim(),
     role: selectedRole,
-    roleLabel: selectedRole === "welder" ? "Payvandchi" : "Gazpayvandchi",
+    roleLabel: selectedRole === "welder" ? "Payvandchi" : "Elektrelektrgazpayvandchi",
     photo: photoData
   };
   stopCamera();
@@ -357,6 +422,9 @@ function renderQuestion(){
   $("prevBtn").disabled = exam.index === 0;
   $("nextBtn").classList.toggle("hidden", exam.index === exam.questions.length - 1);
   $("finishBtn").classList.toggle("hidden", exam.index !== exam.questions.length - 1);
+  $("nextBtn").disabled = !currentAnswered();
+  $("finishBtn").disabled = !allAnswered();
+  $("finishBtnSide").disabled = !allAnswered();
   $("optionsBox").innerHTML = q.options.map((opt, idx) => `
     <div class="option ${exam.answers[exam.index] === idx ? "selected" : ""}" data-idx="${idx}">
       <span class="letter">${["A","B","C","D"][idx]}</span>
@@ -372,9 +440,9 @@ function renderQuestion(){
 }
 
 function finishExam(auto=false){
-  if(!auto && exam.answers.some(a => a === null)){
-    const left = exam.answers.filter(a => a === null).length;
-    if(!confirm(`${left} ${t("unanswered")}`)) return;
+  if(!auto && !allAnswered()){
+    alert(allRequiredMessage());
+    return;
   }
   clearInterval(exam.timerId);
   let score = 0;
@@ -424,7 +492,16 @@ $("captureBtn").addEventListener("click", capturePhoto);
 $("retakeBtn").addEventListener("click", () => { photoData = ""; requestCamera(); });
 $("startExamBtn").addEventListener("click", startExam);
 $("prevBtn").addEventListener("click", () => { if(exam.index>0){ exam.index--; renderQuestion(); }});
-$("nextBtn").addEventListener("click", () => { if(exam.index<exam.questions.length-1){ exam.index++; renderQuestion(); }});
+$("nextBtn").addEventListener("click", () => {
+  if(!currentAnswered()){
+    alert(answerRequiredMessage());
+    return;
+  }
+  if(exam.index<exam.questions.length-1){
+    exam.index++;
+    renderQuestion();
+  }
+});
 $("finishBtn").addEventListener("click", () => finishExam(false));
 $("finishBtnSide").addEventListener("click", () => finishExam(false));
 $("goHomeBtn").addEventListener("click", () => showScreen("homeScreen"));

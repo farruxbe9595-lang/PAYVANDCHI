@@ -32,3 +32,11 @@ Fayllarni repository root qismiga yuklang:
 - `README.md`
 
 Settings → Pages → Deploy from branch → main → /root → Save.
+
+
+## v5 tuzatishlar
+- Javob belgilanmasa “Keyingisi” tugmasi ishlamaydi.
+- Barcha 20 ta savol belgilanmaguncha “Tugatish” bosilmaydi.
+- Yangi ishchi uchun ro‘yxatdan o‘tish oynasi tozalanadi.
+- Korxona va sex nomlari avval kiritilganlardan tanlash uchun saqlanadi.
+- “Gazpayvandchi” nomi “Elektrgazpayvandchi”ga almashtirildi.
