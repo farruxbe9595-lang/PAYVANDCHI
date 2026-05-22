@@ -25,12 +25,10 @@ const UI = {
     welderBtn:"Payvandchilar bilimini sinash", welderInfo:"Elektr payvandchi yo‘nalishi bo‘yicha 20 ta aralash test.",
     gasBtn:"Gazpayvandchilar bilimini sinash", gasInfo:"Gazpayvandchi yo‘nalishi bo‘yicha 20 ta aralash test.",
     resultsArchive:"Natijalar arxivi", resultsNote:"Natijalar ushbu brauzer xotirasida saqlanadi.",
-    pdfExport:"PDF hisobot", csvExport:"CSV eksport", clearAll:"Hammasini o‘chirish",
+    pdfExport:"PDF hisobot", clearAll:"Hammasini o‘chirish",
     thTime:"Sana/vaqt", thPhoto:"Rasm", thFio:"F.I.Sh.", thCompany:"Korxona", thWorkshop:"Sex", thPosition:"Lavozim", thRole:"Rol", thScore:"Ball", thConclusion:"Xulosa", thAction:"Amal",
     home:"Bosh sahifa", registerTitle:"Ro‘yxatdan o‘tish",
-    firstName:"Ism", lastName:"Familiya", middleName:"Otasining ismi", company:"Korxona", workshop:"Sex", position:"Lavozim", sectionName:"Uchastka nomi",
-    companyPlaceholder:"Masalan: Andijon vagon deposi", workshopPlaceholder:"Masalan: AKP / payvandlash sexi", sectionPlaceholder:"Masalan: payvandlash uchastkasi",
-    cameraRequest:"Kameraga ruxsat so‘rash", capture:"Yuzni rasmga olish", retake:"Qayta olish",
+    firstName:"Ism", lastName:"Familiya", middleName:"Otasining ismi", company:"Korxona", workshop:"Sex", position:"Lavozim",     companyPlaceholder:"Masalan: Andijon vagon deposi", workshopPlaceholder:"Masalan: AKP / payvandlash sexi",     cameraRequest:"Kameraga ruxsat so‘rash", capture:"Yuzni rasmga olish", retake:"Qayta olish",
     cameraNote:"Yuz kameraga to‘g‘rilanadi va rasm olinadi. Kamera ishlamasa ham testga o‘tish mumkin, lekin natijada “rasm yo‘q” ko‘rinadi.",
     startExam:"Ro‘yxatdan o‘tish va testni boshlash", finishExam:"Testni tugatish", prev:"Oldingi", next:"Keyingisi", finish:"Tugatish",
     examFinished:"Test yakunlandi", noAnswersShown:"To‘g‘ri javoblar ko‘rsatilmaydi. Natija bosh sahifadagi arxivga saqlandi.", goHome:"Bosh sahifaga qaytish",
@@ -55,12 +53,10 @@ const UI = {
     welderBtn:"Пайвандчилар билимини синаш", welderInfo:"Электр пайвандчи йўналиши бўйича 20 та аралаш тест.",
     gasBtn:"Газпайвандчилар билимини синаш", gasInfo:"Газпайвандчи йўналиши бўйича 20 та аралаш тест.",
     resultsArchive:"Натижалар архиви", resultsNote:"Натижалар ушбу браузер хотирасида сақланади.",
-    pdfExport:"PDF ҳисобот", csvExport:"CSV экспорт", clearAll:"Ҳаммасини ўчириш",
+    pdfExport:"PDF ҳисобот", clearAll:"Ҳаммасини ўчириш",
     thTime:"Сана/вақт", thPhoto:"Расм", thFio:"Ф.И.Ш.", thCompany:"Корхона", thWorkshop:"Цех", thPosition:"Лавозим", thRole:"Рол", thScore:"Балл", thConclusion:"Хулоса", thAction:"Амал",
     home:"Бош саҳифа", registerTitle:"Рўйхатдан ўтиш",
-    firstName:"Исм", lastName:"Фамилия", middleName:"Отасининг исми", company:"Корхона", workshop:"Цех", position:"Лавозим", sectionName:"Участка номи",
-    companyPlaceholder:"Масалан: Андижон вагон депоси", workshopPlaceholder:"Масалан: АКП / пайвандлаш цехи", sectionPlaceholder:"Масалан: пайвандлаш участкаси",
-    cameraRequest:"Камерага рухсат сўраш", capture:"Юзни расмга олиш", retake:"Қайта олиш",
+    firstName:"Исм", lastName:"Фамилия", middleName:"Отасининг исми", company:"Корхона", workshop:"Цех", position:"Лавозим",     companyPlaceholder:"Масалан: Андижон вагон депоси", workshopPlaceholder:"Масалан: АКП / пайвандлаш цехи",     cameraRequest:"Камерага рухсат сўраш", capture:"Юзни расмга олиш", retake:"Қайта олиш",
     cameraNote:"Юз камерага тўғриланади ва расм олинади. Камера ишламаса ҳам тестга ўтиш мумкин, лекин натижада “расм йўқ” кўринади.",
     startExam:"Рўйхатдан ўтиш ва тестни бошлаш", finishExam:"Тестни тугатиш", prev:"Олдинги", next:"Кейингиси", finish:"Тугатиш",
     examFinished:"Тест якунланди", noAnswersShown:"Тўғри жавоблар кўрсатилмайди. Натижа бош саҳифадаги архивга сақланди.", goHome:"Бош саҳифага қайтиш",
@@ -183,7 +179,7 @@ function renderResults(){
       <td>${tr(r.workshop || "-")}</td>
       <td>${tr(r.position || "-")}</td>
       <td>${tr(r.roleLabel || "-")}</td>
-      <td><b>${r.score}/${r.total}</b> (${r.percent}%)</td>
+      <td><b>${r.score}</b></td>
       <td><b>${conclusion.text}</b></td>
       <td><button class="danger-btn" onclick="deleteResult(${idx})">${t("delete")}</button></td>
     </tr>`;
@@ -198,24 +194,6 @@ window.deleteResult = function(index){
   renderResults();
 }
 
-function exportCSV(){
-  const rows = getResults();
-  if(!rows.length){ alert(t("noExport")); return; }
-  const header = [t("order"),t("thTime"),t("firstName"),t("lastName"),t("middleName"),t("thCompany"),t("thWorkshop"),t("thPosition"),t("thRole"),t("score"),t("conclusion")];
-  const lines = [header.join(";")];
-  rows.slice().reverse().forEach((r, i) => {
-    const conclusion = getConclusion(Number(r.score)).text;
-    lines.push([i+1,r.date,r.firstName,r.lastName,r.middleName,r.company,r.workshop,r.position,r.roleLabel,`${r.score}/${r.total}`,conclusion]
-      .map(v => `"${tr(String(v||"")).replaceAll('"','""')}"`).join(";"));
-  });
-  const blob = new Blob(["\ufeff" + lines.join("\n")], {type:"text/csv;charset=utf-8"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = currentLang === "cyr" ? "imtihon_natijalari_krill.csv" : "imtihon_natijalari_lotin.csv";
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
-
 function exportPDF(){
   const rows = getResults();
   if(!rows.length){ alert(t("noExport")); return; }
@@ -228,7 +206,7 @@ function exportPDF(){
       <td>${tr(r.middleName || "")}</td>
       <td>${tr(r.workshop || "-")}</td>
       <td>${tr(r.position || "-")}</td>
-      <td>${r.score}/${r.total}</td>
+      <td>${r.score}</td>
       <td>${c}</td>
     </tr>`;
   }).join("");
@@ -337,7 +315,6 @@ function startExam(){
     company: $("company").value.trim(),
     workshop: $("workshop").value.trim(),
     position: $("position").value.trim(),
-    sectionName: $("sectionName").value.trim(),
     role: selectedRole,
     roleLabel: selectedRole === "welder" ? "Payvandchi" : "Gazpayvandchi",
     photo: photoData
@@ -417,8 +394,8 @@ function finishExam(auto=false){
   $("finalPhoto").src = worker.photo || "";
   $("finalPhoto").style.display = worker.photo ? "block" : "none";
   $("finalName").textContent = tr(fio(worker));
-  $("finalMeta").textContent = `${tr(worker.company || "-")} • ${tr(worker.workshop || "-")} • ${tr(worker.position)} • ${tr(worker.sectionName || "-")}`;
-  $("finalScore").textContent = `${score}/${exam.questions.length} — ${percent}%`;
+  $("finalMeta").textContent = `${tr(worker.company || "-")} • ${tr(worker.workshop || "-")} • ${tr(worker.position)}`;
+  $("finalScore").textContent = `${score} ball`;
   $("finalConclusion").textContent = c.text;
   showScreen("resultScreen");
 }
@@ -451,7 +428,6 @@ $("nextBtn").addEventListener("click", () => { if(exam.index<exam.questions.leng
 $("finishBtn").addEventListener("click", () => finishExam(false));
 $("finishBtnSide").addEventListener("click", () => finishExam(false));
 $("goHomeBtn").addEventListener("click", () => showScreen("homeScreen"));
-$("exportBtn").addEventListener("click", exportCSV);
 $("exportPdfBtn").addEventListener("click", exportPDF);
 $("clearAllBtn").addEventListener("click", () => {
   if(confirm(t("confirmClear"))){

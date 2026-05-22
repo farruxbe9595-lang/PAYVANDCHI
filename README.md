@@ -6,7 +6,7 @@
 ## Yangiliklar
 - Saytning istalgan joyida Lotin/Krill til almashtirish
 - Ro‘yxatdan o‘tishda otasining ismi qo‘shildi
-- Ro‘yxatdan o‘tishda sex maydoni qo‘shildi
+- Ro‘yxatdan o‘tishda sex maydoni qoldirildi, uchastka nomi olib tashlandi
 - Natija baholash mezoni:
   - 12 balldan past — O‘tolmadingiz
   - 12–15 ball — Qoniqarli
@@ -20,9 +20,8 @@
   - Otasining ismi
   - Sex
   - Lavozim
-  - Ball
+  - Ball faqat raqam ko‘rinishida
   - Xulosa
-- CSV eksport ham yangilandi
 
 ## GitHub Pages
 Fayllarni repository root qismiga yuklang:
