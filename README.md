@@ -1,40 +1,35 @@
-# Payvandchi va gazpayvandchi imtihon platformasi
+# Payvandchi va gazpayvandchi imtihon platformasi — v3
 
-GitHub Pages uchun tayyor statik web-platforma.
+## Admin parol
+`17011995`
 
-## Kirish paroli
-Admin parol: `17011995`
+## Yangiliklar
+- Saytning istalgan joyida Lotin/Krill til almashtirish
+- Ro‘yxatdan o‘tishda otasining ismi qo‘shildi
+- Ro‘yxatdan o‘tishda sex maydoni qo‘shildi
+- Natija baholash mezoni:
+  - 12 balldan past — O‘tolmadingiz
+  - 12–15 ball — Qoniqarli
+  - 16–17 ball — Yaxshi
+  - 18–20 ball — A’lo
+- PDF rasmiy hisobot:
+  - “KORXONADA ISHLOVCHI PAYVANDCHI VA GAZPAYVANDCHILAR IMTIHON NATIJASI”
+  - Tartib raqam
+  - Ism
+  - Familiya
+  - Otasining ismi
+  - Sex
+  - Lavozim
+  - Ball
+  - Xulosa
+- CSV eksport ham yangilandi
 
-## Funksiyalar
-- Admin parol oynasi
-- Payvandchi va gazpayvandchi rollari
-- Ro‘yxatdan o‘tish: ism, familiya, korxona, lavozim, uchastka
-- Kamera orqali xodim yuzini rasmga olish
-- 15 daqiqalik test
-- Har bir xodimga 20 ta savol:
-  - 14 ta kasbiy savol
-  - 2 ta mehnat muhofazasi
-  - 2 ta yong‘in xavfsizligi
-  - 2 ta elektr xavfsizligi
-- Savol va javob variantlari aralashtiriladi
-- To‘g‘ri javoblar ko‘rsatilmaydi
-- Natijalar brauzer xotirasida saqlanadi
-- Har bir natijani alohida o‘chirish
-- CSV eksport
+## GitHub Pages
+Fayllarni repository root qismiga yuklang:
+- `index.html`
+- `style.css`
+- `script.js`
+- `questions.js`
+- `README.md`
 
-## GitHub Pages joylash
-1. GitHub’da yangi repository oching.
-2. ZIP ichidagi fayllarni repository ichiga yuklang:
-   - `index.html`
-   - `style.css`
-   - `script.js`
-   - `questions.js`
-   - `README.md`
-3. Repository → Settings → Pages.
-4. Branch: `main`, folder: `/root`.
-5. Save bosing.
-6. Berilgan GitHub Pages link orqali oching.
-
-## Muhim eslatma
-Bu loyiha server ishlatmaydi. Natijalar faqat ochilgan brauzerning `localStorage` xotirasida saqlanadi.
-Agar umumiy markaziy baza kerak bo‘lsa, keyingi versiyada Firebase/Supabase ulash tavsiya qilinadi.
+Settings → Pages → Deploy from branch → main → /root → Save.

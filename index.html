@@ -3,24 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Payvandchi va gazpayvandchi bilim sinovi</title>
+  <title data-i18n="pageTitle">Payvandchi va gazpayvandchi bilim sinovi</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="rail-bg"></div>
 
+  <div class="lang-switch glass">
+    <button class="lang-btn active" data-lang="lat">Lotin</button>
+    <button class="lang-btn" data-lang="cyr">Крилл</button>
+  </div>
+
   <main id="app">
     <section id="loginScreen" class="screen active">
       <div class="auth-card glass">
         <div class="brand-badge">VChD / ICHTB</div>
-        <h1>Imtihon platformasi</h1>
-        <p class="muted">Payvandchi va gazpayvandchilar bilimini nazariy sinovdan o‘tkazish tizimi</p>
-        <label class="field-label" for="adminPassword">Admin parol</label>
+        <h1 data-i18n="loginTitle">Imtihon platformasi</h1>
+        <p class="muted" data-i18n="loginSubtitle">Payvandchi va gazpayvandchilar bilimini nazariy sinovdan o‘tkazish tizimi</p>
+        <label class="field-label" for="adminPassword" data-i18n="adminPassword">Admin parol</label>
         <div class="password-row">
-          <input id="adminPassword" type="password" placeholder="Parolni kiriting" autocomplete="off" />
+          <input id="adminPassword" type="password" data-placeholder="passwordPlaceholder" placeholder="Parolni kiriting" autocomplete="off" />
           <button id="togglePassword" class="icon-btn" type="button">👁</button>
         </div>
-        <button id="loginBtn" class="primary-btn full">Kirish</button>
+        <button id="loginBtn" class="primary-btn full" data-i18n="enter">Kirish</button>
         <p id="loginError" class="error-text"></p>
       </div>
     </section>
@@ -28,10 +33,10 @@
     <section id="homeScreen" class="screen">
       <header class="hero glass">
         <div>
-          <div class="brand-badge">Temir yo‘l texnik nazorat platformasi</div>
-          <h1>Payvandchi va gazpayvandchilar bilimlarini sinovdan o‘tkazish platformasi</h1>
-          <p>Admin: ICHTB boshlig‘i F.B. G‘aniyev</p>
-          <p class="muted">Nazariy test, vaqt nazorati, xodim ma’lumotlari, yuz rasmi va natijalar arxivi.</p>
+          <div class="brand-badge" data-i18n="platformBadge">Temir yo‘l texnik nazorat platformasi</div>
+          <h1 data-i18n="mainTitle">Payvandchi va gazpayvandchilar bilimlarini sinovdan o‘tkazish platformasi</h1>
+          <p><span data-i18n="adminLabel">Admin</span>: ICHTB boshlig‘i F.B. G‘aniyev</p>
+          <p class="muted" data-i18n="mainSubtitle">Nazariy test, vaqt nazorati, xodim ma’lumotlari, yuz rasmi va natijalar arxivi.</p>
         </div>
         <div class="hero-illustration">
           <div class="train-line"></div>
@@ -45,40 +50,42 @@
       <section class="role-grid">
         <button class="role-card glass" data-role="welder">
           <span class="role-icon">⚡</span>
-          <h2>Payvandchilar bilimini sinash</h2>
-          <p>Elektr payvandchi yo‘nalishi bo‘yicha 20 ta aralash test.</p>
+          <h2 data-i18n="welderBtn">Payvandchilar bilimini sinash</h2>
+          <p data-i18n="welderInfo">Elektr payvandchi yo‘nalishi bo‘yicha 20 ta aralash test.</p>
         </button>
         <button class="role-card glass" data-role="gas">
           <span class="role-icon">🔥</span>
-          <h2>Gazpayvandchilar bilimini sinash</h2>
-          <p>Gazpayvandchi yo‘nalishi bo‘yicha 20 ta aralash test.</p>
+          <h2 data-i18n="gasBtn">Gazpayvandchilar bilimini sinash</h2>
+          <p data-i18n="gasInfo">Gazpayvandchi yo‘nalishi bo‘yicha 20 ta aralash test.</p>
         </button>
       </section>
 
       <section class="results-panel glass">
         <div class="panel-head">
           <div>
-            <h2>Natijalar arxivi</h2>
-            <p class="muted">Natijalar ushbu brauzer xotirasida saqlanadi.</p>
+            <h2 data-i18n="resultsArchive">Natijalar arxivi</h2>
+            <p class="muted" data-i18n="resultsNote">Natijalar ushbu brauzer xotirasida saqlanadi.</p>
           </div>
           <div class="result-actions">
-            <button id="exportBtn" class="secondary-btn">CSV eksport</button>
-            <button id="clearAllBtn" class="danger-btn">Hammasini o‘chirish</button>
+            <button id="exportPdfBtn" class="success-btn" data-i18n="pdfExport">PDF hisobot</button>
+            <button id="exportBtn" class="secondary-btn" data-i18n="csvExport">CSV eksport</button>
+            <button id="clearAllBtn" class="danger-btn" data-i18n="clearAll">Hammasini o‘chirish</button>
           </div>
         </div>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>Sana/vaqt</th>
-                <th>Rasm</th>
-                <th>F.I.Sh.</th>
-                <th>Korxona</th>
-                <th>Lavozim</th>
-                <th>Uchastka</th>
-                <th>Rol</th>
-                <th>Natija</th>
-                <th>Amal</th>
+                <th data-i18n="thTime">Sana/vaqt</th>
+                <th data-i18n="thPhoto">Rasm</th>
+                <th data-i18n="thFio">F.I.Sh.</th>
+                <th data-i18n="thCompany">Korxona</th>
+                <th data-i18n="thWorkshop">Sex</th>
+                <th data-i18n="thPosition">Lavozim</th>
+                <th data-i18n="thRole">Rol</th>
+                <th data-i18n="thScore">Ball</th>
+                <th data-i18n="thConclusion">Xulosa</th>
+                <th data-i18n="thAction">Amal</th>
               </tr>
             </thead>
             <tbody id="resultsBody"></tbody>
@@ -90,16 +97,18 @@
     <section id="registerScreen" class="screen">
       <div class="form-card glass">
         <div class="screen-top">
-          <button class="back-btn" id="backHome1">← Bosh sahifa</button>
+          <button class="back-btn" id="backHome1">← <span data-i18n="home">Bosh sahifa</span></button>
           <div class="brand-badge" id="selectedRoleBadge">Rol</div>
         </div>
-        <h2>Ro‘yxatdan o‘tish</h2>
+        <h2 data-i18n="registerTitle">Ro‘yxatdan o‘tish</h2>
         <div class="form-grid">
-          <label>Ism <input id="firstName" required placeholder="Ism" /></label>
-          <label>Familiya <input id="lastName" required placeholder="Familiya" /></label>
-          <label>Korxona <input id="company" placeholder="Masalan: Andijon vagon deposi" /></label>
-          <label>Lavozim <input id="position" readonly /></label>
-          <label>Uchastka nomi <input id="sectionName" placeholder="Masalan: payvandlash uchastkasi" /></label>
+          <label><span data-i18n="firstName">Ism</span> <input id="firstName" required data-placeholder="firstName" placeholder="Ism" /></label>
+          <label><span data-i18n="lastName">Familiya</span> <input id="lastName" required data-placeholder="lastName" placeholder="Familiya" /></label>
+          <label><span data-i18n="middleName">Otasining ismi</span> <input id="middleName" data-placeholder="middleName" placeholder="Otasining ismi" /></label>
+          <label><span data-i18n="company">Korxona</span> <input id="company" data-placeholder="companyPlaceholder" placeholder="Masalan: Andijon vagon deposi" /></label>
+          <label><span data-i18n="workshop">Sex</span> <input id="workshop" data-placeholder="workshopPlaceholder" placeholder="Masalan: AKP / payvandlash sexi" /></label>
+          <label><span data-i18n="position">Lavozim</span> <input id="position" readonly /></label>
+          <label class="wide"><span data-i18n="sectionName">Uchastka nomi</span> <input id="sectionName" data-placeholder="sectionPlaceholder" placeholder="Masalan: payvandlash uchastkasi" /></label>
         </div>
 
         <div class="camera-box">
@@ -109,14 +118,14 @@
             <img id="photoPreview" alt="Xodim rasmi" />
           </div>
           <div class="camera-actions">
-            <button id="requestCameraBtn" class="secondary-btn">Kameraga ruxsat so‘rash</button>
-            <button id="captureBtn" class="primary-btn" disabled>Yuzni rasmga olish</button>
-            <button id="retakeBtn" class="secondary-btn hidden">Qayta olish</button>
+            <button id="requestCameraBtn" class="secondary-btn" data-i18n="cameraRequest">Kameraga ruxsat so‘rash</button>
+            <button id="captureBtn" class="primary-btn" disabled data-i18n="capture">Yuzni rasmga olish</button>
+            <button id="retakeBtn" class="secondary-btn hidden" data-i18n="retake">Qayta olish</button>
           </div>
-          <p class="muted">Yuz kameraga to‘g‘rilanadi va rasm olinadi. Kamera ishlamasa ham testga o‘tish mumkin, lekin natijada “rasm yo‘q” ko‘rinadi.</p>
+          <p class="muted" data-i18n="cameraNote">Yuz kameraga to‘g‘rilanadi va rasm olinadi. Kamera ishlamasa ham testga o‘tish mumkin, lekin natijada “rasm yo‘q” ko‘rinadi.</p>
         </div>
 
-        <button id="startExamBtn" class="primary-btn full">Ro‘yxatdan o‘tish va testni boshlash</button>
+        <button id="startExamBtn" class="primary-btn full" data-i18n="startExam">Ro‘yxatdan o‘tish va testni boshlash</button>
         <p id="registerError" class="error-text"></p>
       </div>
     </section>
@@ -129,7 +138,7 @@
           <div class="timer" id="timer">15:00</div>
           <div class="progress-bar"><span id="progressFill"></span></div>
           <p id="progressText">1 / 20</p>
-          <button id="finishBtnSide" class="danger-btn full">Testni tugatish</button>
+          <button id="finishBtnSide" class="danger-btn full" data-i18n="finishExam">Testni tugatish</button>
         </aside>
 
         <section class="question-card glass">
@@ -140,9 +149,9 @@
           <h2 id="questionText"></h2>
           <div id="optionsBox" class="options-box"></div>
           <div class="nav-row">
-            <button id="prevBtn" class="secondary-btn">Oldingi</button>
-            <button id="nextBtn" class="primary-btn">Keyingisi</button>
-            <button id="finishBtn" class="success-btn hidden">Tugatish</button>
+            <button id="prevBtn" class="secondary-btn" data-i18n="prev">Oldingi</button>
+            <button id="nextBtn" class="primary-btn" data-i18n="next">Keyingisi</button>
+            <button id="finishBtn" class="success-btn hidden" data-i18n="finish">Tugatish</button>
           </div>
         </section>
       </div>
@@ -150,17 +159,18 @@
 
     <section id="resultScreen" class="screen">
       <div class="result-card glass">
-        <h2>Test yakunlandi</h2>
+        <h2 data-i18n="examFinished">Test yakunlandi</h2>
         <div class="result-main">
           <img id="finalPhoto" alt="Xodim rasmi" />
           <div>
             <h3 id="finalName"></h3>
             <p id="finalMeta"></p>
             <div id="finalScore" class="score-big"></div>
-            <p class="muted">To‘g‘ri javoblar ko‘rsatilmaydi. Natija bosh sahifadagi arxivga saqlandi.</p>
+            <div id="finalConclusion" class="conclusion-badge"></div>
+            <p class="muted" data-i18n="noAnswersShown">To‘g‘ri javoblar ko‘rsatilmaydi. Natija bosh sahifadagi arxivga saqlandi.</p>
           </div>
         </div>
-        <button id="goHomeBtn" class="primary-btn full">Bosh sahifaga qaytish</button>
+        <button id="goHomeBtn" class="primary-btn full" data-i18n="goHome">Bosh sahifaga qaytish</button>
       </div>
     </section>
   </main>
