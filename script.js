@@ -14,16 +14,16 @@ let exam = { questions: [], answers: [], index: 0, left: EXAM_SECONDS, timerId: 
 
 const UI = {
   lat: {
-    pageTitle:"Payvandchi va elektrgazpayvandchi bilim sinovi",
+    pageTitle:"Elektrpayvandchi va Elektr-gazpayvandchilar bilim sinovi",
     loginTitle:"Imtihon platformasi",
-    loginSubtitle:"Payvandchi va elektrelektrgazpayvandchilar bilimini nazariy sinovdan o‘tkazish tizimi",
+    loginSubtitle:"Elektrpayvandchi va Elektr-gazpayvandchilar bilimini nazariy sinovdan o‘tkazish tizimi",
     adminPassword:"Admin parol", passwordPlaceholder:"Parolni kiriting", enter:"Kirish",
     platformBadge:"Temir yo‘l texnik nazorat platformasi",
-    mainTitle:"Payvandchi va elektrelektrgazpayvandchilar bilimlarini sinovdan o‘tkazish platformasi",
+    mainTitle:"Elektrpayvandchi va Elektr-gazpayvandchilar bilimlarini sinovdan o‘tkazish platformasi",
     adminLabel:"Admin",
     mainSubtitle:"Nazariy test, vaqt nazorati, xodim ma’lumotlari, yuz rasmi va natijalar arxivi.",
-    welderBtn:"Payvandchilar bilimini sinash", welderInfo:"Elektr payvandchi yo‘nalishi bo‘yicha 20 ta aralash test.",
-    gasBtn:"Elektrelektrelektrgazpayvandchilar bilimini sinash", gasInfo:"Elektrelektrgazpayvandchi yo‘nalishi bo‘yicha 20 ta aralash test.",
+    welderBtn:"Elektrpayvandchilar bilimini sinash", welderInfo:"Elektrpayvandchi yo‘nalishi bo‘yicha 20 ta aralash test.",
+    gasBtn:"Elektr-gazpayvandchilar bilimini sinash", gasInfo:"Elektr-gazpayvandchi yo‘nalishi bo‘yicha 20 ta aralash test.",
     resultsArchive:"Natijalar arxivi", resultsNote:"Natijalar ushbu brauzer xotirasida saqlanadi.",
     pdfExport:"PDF hisobot", clearAll:"Hammasini o‘chirish",
     thTime:"Sana/vaqt", thPhoto:"Rasm", thFio:"F.I.Sh.", thCompany:"Korxona", thWorkshop:"Sex", thPosition:"Lavozim", thRole:"Rol", thScore:"Ball", thConclusion:"Xulosa", thAction:"Amal",
@@ -34,24 +34,24 @@ const UI = {
     examFinished:"Test yakunlandi", noAnswersShown:"To‘g‘ri javoblar ko‘rsatilmaydi. Natija bosh sahifadagi arxivga saqlandi.", goHome:"Bosh sahifaga qaytish",
     noResults:"Hozircha natija yo‘q.", delete:"O‘chirish", noPhoto:"Rasm yo‘q", wrongPassword:"Parol noto‘g‘ri.",
     enterName:"Ism va familiyani kiriting.", unanswered:"ta savol belgilanmagan. Baribir tugatasizmi?",
-    reportTitle:"KORXONADA ISHLOVCHI PAYVANDCHI VA GAZPAYVANDCHILAR IMTIHON NATIJASI",
+    reportTitle:"KORXONADA ISHLOVCHI ELEKTRPAYVANDCHI VA ELEKTR-GAZPAYVANDCHILAR IMTIHON NATIJASI",
     reportSub:"Rasmiy hisobot", order:"T/r", score:"Ball", conclusion:"Xulosa",
     didNotPass:"O‘tolmadingiz", satisfactory:"Qoniqarli", good:"Yaxshi", excellent:"A’lo",
     photoWarning:"Kamera ruxsati berilmadi yoki brauzer qo‘llab-quvvatlamaydi. Testni rasmsiz davom ettirish mumkin.",
     confirmDelete:"Ushbu natijani o‘chirasizmi?", confirmClear:"Barcha natijalarni o‘chirasizmi?", noExport:"Eksport qilish uchun natija yo‘q.",
-    welder:"Payvandchi", gas:"Elektrelektrgazpayvandchi", question:"savol"
+    welder:"Elektrpayvandchi", gas:"Elektr-gazpayvandchi", question:"savol"
   },
   cyr: {
-    pageTitle:"Пайвандчи ва электргазпайвандчи билим синови",
+    pageTitle:"Электрпайвандчи ва Электр-газпайвандчи билим синови",
     loginTitle:"Имтиҳон платформаси",
-    loginSubtitle:"Пайвандчи ва электрэлектргазпайвандчилар билимини назарий синовдан ўтказиш тизими",
+    loginSubtitle:"Электрайвандчи ва Электр-газпайвандчилар билимини назарий синовдан ўтказиш тизими",
     adminPassword:"Админ парол", passwordPlaceholder:"Паролни киритинг", enter:"Кириш",
     platformBadge:"Темир йўл техник назорат платформаси",
-    mainTitle:"Пайвандчи ва электрэлектргазпайвандчилар билимларини синовдан ўтказиш платформаси",
+    mainTitle:"Электрпайвандчи ва Электр-газпайвандчилар билимларини синовдан ўтказиш платформаси",
     adminLabel:"Админ",
     mainSubtitle:"Назарий тест, вақт назорати, ходим маълумотлари, юз расми ва натижалар архиви.",
-    welderBtn:"Пайвандчилар билимини синаш", welderInfo:"Электр пайвандчи йўналиши бўйича 20 та аралаш тест.",
-    gasBtn:"Электрэлектрэлектргазпайвандчилар билимини синаш", gasInfo:"Электрэлектргазпайвандчи йўналиши бўйича 20 та аралаш тест.",
+    welderBtn:"Электрпайвандчилар билимини синаш", welderInfo:"Электрпайвандчи йўналиши бўйича 20 та аралаш тест.",
+    gasBtn:"Электр-газпайвандчилар билимини синаш", gasInfo:"Электр-газпайвандчи йўналиши бўйича 20 та аралаш тест.",
     resultsArchive:"Натижалар архиви", resultsNote:"Натижалар ушбу браузер хотирасида сақланади.",
     pdfExport:"PDF ҳисобот", clearAll:"Ҳаммасини ўчириш",
     thTime:"Сана/вақт", thPhoto:"Расм", thFio:"Ф.И.Ш.", thCompany:"Корхона", thWorkshop:"Цех", thPosition:"Лавозим", thRole:"Рол", thScore:"Балл", thConclusion:"Хулоса", thAction:"Амал",
@@ -62,12 +62,12 @@ const UI = {
     examFinished:"Тест якунланди", noAnswersShown:"Тўғри жавоблар кўрсатилмайди. Натижа бош саҳифадаги архивга сақланди.", goHome:"Бош саҳифага қайтиш",
     noResults:"Ҳозирча натижа йўқ.", delete:"Ўчириш", noPhoto:"Расм йўқ", wrongPassword:"Парол нотўғри.",
     enterName:"Исм ва фамилияни киритинг.", unanswered:"та савол белгиланмаган. Барибир тугатасизми?",
-    reportTitle:"КОРХОНАДА ИШЛОВЧИ ПАЙВАНДЧИ ВА ГАЗПАЙВАНДЧИЛАР ИМТИҲОН НАТИЖАСИ",
+    reportTitle:"КОРХОНАДА ИШЛОВЧИ ЭЛЕКТРПАЙВАНДЧИ ВА ЭЛЕКТР-ГАЗПАЙВАНДЧИЛАР ИМТИҲОН НАТИЖАСИ",
     reportSub:"Расмий ҳисобот", order:"Т/р", score:"Балл", conclusion:"Хулоса",
     didNotPass:"Ўтолмадингиз", satisfactory:"Қониқарли", good:"Яхши", excellent:"Аъло",
     photoWarning:"Камера рухсати берилмади ёки браузер қўллаб-қувватламайди. Тестни расмсиз давом эттириш мумкин.",
     confirmDelete:"Ушбу натижани ўчирасизми?", confirmClear:"Барча натижаларни ўчирасизми?", noExport:"Экспорт қилиш учун натижа йўқ.",
-    welder:"Пайвандчи", gas:"Электрэлектргазпайвандчи", question:"савол"
+    welder:"Электрпайвандчи", gas:"Электр-газпайвандчи", question:"савол"
   }
 };
 
@@ -381,7 +381,7 @@ function startExam(){
     workshop: $("workshop").value.trim(),
     position: $("position").value.trim(),
     role: selectedRole,
-    roleLabel: selectedRole === "welder" ? "Payvandchi" : "Elektrelektrgazpayvandchi",
+    roleLabel: selectedRole === "welder" ? "Elektrpayvandchi" : "Elektr-gazpayvandchi",
     photo: photoData
   };
   stopCamera();
