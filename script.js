@@ -26,9 +26,9 @@ const UI = {
     gasBtn:"Elektr-gazpayvandchilar bilimini sinash", gasInfo:"Elektr-gazpayvandchi yo‘nalishi bo‘yicha 20 ta aralash test.",
     resultsArchive:"Natijalar arxivi", resultsNote:"Natijalar ushbu brauzer xotirasida saqlanadi.",
     pdfExport:"PDF hisobot", clearAll:"Hammasini o‘chirish",
-    thTime:"Sana/vaqt", thPhoto:"Rasm", thFio:"F.I.Sh.", thCompany:"Korxona", thWorkshop:"Sex", thPosition:"Lavozim", thRole:"Rol", thScore:"Ball", thConclusion:"Xulosa", thAction:"Amal",
+    thTime:"Sana/vaqt", thPhoto:"Rasm", thFio:"F.I.Sh.", thCompany:"Korxona", thWorkshop:"Uchastka", thPosition:"Lavozim", thRole:"Rol", thScore:"Ball", thConclusion:"Xulosa", thAction:"Amal",
     home:"Bosh sahifa", registerTitle:"Ro‘yxatdan o‘tish",
-    firstName:"Ism", lastName:"Familiya", middleName:"Otasining ismi", company:"Korxona", workshop:"Sex", position:"Lavozim",     companyPlaceholder:"Masalan: Andijon vagon deposi", workshopPlaceholder:"Masalan: AKP / payvandlash sexi",     cameraRequest:"Kameraga ruxsat so‘rash", capture:"Yuzni rasmga olish", retake:"Qayta olish",
+    firstName:"Ism", lastName:"Familiya", company:"Korxona", workshop:"Uchastka", position:"Lavozim",     companyPlaceholder:"Masalan: Andijon vagon deposi", workshopPlaceholder:"Masalan: AKP / Telejka",     cameraRequest:"Kameraga ruxsat so‘rash", capture:"Yuzni rasmga olish", retake:"Qayta olish",
     cameraNote:"Yuz kameraga to‘g‘rilanadi va rasm olinadi. Kamera ishlamasa ham testga o‘tish mumkin, lekin natijada “rasm yo‘q” ko‘rinadi.",
     startExam:"Ro‘yxatdan o‘tish va testni boshlash", finishExam:"Testni tugatish", prev:"Oldingi", next:"Keyingisi", finish:"Tugatish",
     examFinished:"Test yakunlandi", noAnswersShown:"To‘g‘ri javoblar ko‘rsatilmaydi. Natija bosh sahifadagi arxivga saqlandi.", goHome:"Bosh sahifaga qaytish",
@@ -54,9 +54,9 @@ const UI = {
     gasBtn:"Электр-газпайвандчилар билимини синаш", gasInfo:"Электр-газпайвандчи йўналиши бўйича 20 та аралаш тест.",
     resultsArchive:"Натижалар архиви", resultsNote:"Натижалар ушбу браузер хотирасида сақланади.",
     pdfExport:"PDF ҳисобот", clearAll:"Ҳаммасини ўчириш",
-    thTime:"Сана/вақт", thPhoto:"Расм", thFio:"Ф.И.Ш.", thCompany:"Корхона", thWorkshop:"Цех", thPosition:"Лавозим", thRole:"Рол", thScore:"Балл", thConclusion:"Хулоса", thAction:"Амал",
+    thTime:"Сана/вақт", thPhoto:"Расм", thFio:"Ф.И.Ш.", thCompany:"Корхона", thWorkshop:"Участка", thPosition:"Лавозим", thRole:"Рол", thScore:"Балл", thConclusion:"Хулоса", thAction:"Амал",
     home:"Бош саҳифа", registerTitle:"Рўйхатдан ўтиш",
-    firstName:"Исм", lastName:"Фамилия", middleName:"Отасининг исми", company:"Корхона", workshop:"Цех", position:"Лавозим",     companyPlaceholder:"Масалан: Андижон вагон депоси", workshopPlaceholder:"Масалан: АКП / пайвандлаш цехи",     cameraRequest:"Камерага рухсат сўраш", capture:"Юзни расмга олиш", retake:"Қайта олиш",
+    firstName:"Исм", lastName:"Фамилия", company:"Корхона", workshop:"Цех", position:"Лавозим",     companyPlaceholder:"Масалан: Андижон вагон депоси", workshopPlaceholder:"Масалан: АКП / Тележка",     cameraRequest:"Камерага рухсат сўраш", capture:"Юзни расмга олиш", retake:"Қайта олиш",
     cameraNote:"Юз камерага тўғриланади ва расм олинади. Камера ишламаса ҳам тестга ўтиш мумкин, лекин натижада “расм йўқ” кўринади.",
     startExam:"Рўйхатдан ўтиш ва тестни бошлаш", finishExam:"Тестни тугатиш", prev:"Олдинги", next:"Кейингиси", finish:"Тугатиш",
     examFinished:"Тест якунланди", noAnswersShown:"Тўғри жавоблар кўрсатилмайди. Натижа бош саҳифадаги архивга сақланди.", goHome:"Бош саҳифага қайтиш",
@@ -158,7 +158,7 @@ function saveResult(result){
 function getResults(){ return JSON.parse(localStorage.getItem("examResults") || "[]"); }
 
 function fio(r){
-  return [r.lastName, r.firstName, r.middleName].filter(Boolean).join(" ");
+  return [r.lastName, r.firstName].filter(Boolean).join(" ");
 }
 
 function renderResults(){
@@ -204,7 +204,6 @@ function exportPDF(){
       <td>${i+1}</td>
       <td>${tr(r.lastName || "")}</td>
       <td>${tr(r.firstName || "")}</td>
-      <td>${tr(r.middleName || "")}</td>
       <td>${tr(r.workshop || "-")}</td>
       <td>${tr(r.position || "-")}</td>
       <td>${r.score}</td>
@@ -238,8 +237,7 @@ function exportPDF(){
         <tr>
           <th>${t("order")}</th>
           <th>${t("lastName")}</th>
-          <th>${t("firstName")}</th>
-          <th>${t("middleName")}</th>
+          <th>${t("firstName")}</th>          
           <th>${t("workshop")}</th>
           <th>${t("position")}</th>
           <th>${t("score")}</th>
@@ -290,8 +288,7 @@ function renderSavedOptions(){
 
 function resetRegisterForm(){
   $("firstName").value = "";
-  $("lastName").value = "";
-  $("middleName").value = "";
+  $("lastName").value = "";  
   $("company").value = "";
   $("workshop").value = "";
   photoData = "";
@@ -375,8 +372,7 @@ function startExam(){
 
   worker = {
     firstName,
-    lastName,
-    middleName: $("middleName").value.trim(),
+    lastName,    
     company: $("company").value.trim(),
     workshop: $("workshop").value.trim(),
     position: $("position").value.trim(),
